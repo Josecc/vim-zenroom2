@@ -26,6 +26,10 @@ endif
 function! s:markdown_room()
     set background=light
     set linespace=8
+    set wrap
+    set linebreak
+    set nolist
+    set guioptions=aegit
 
     hi Normal guibg=gray95
     hi NonText guifg=gray95
@@ -80,6 +84,9 @@ function! s:zenroom_goyo_after()
     let is_mark_or_rst = &filetype == "markdown" || &filetype == "rst" || &filetype == "text"
     if is_mark_or_rst
         set linespace=0
+        set nowrap
+        set nolinebreak
+        set list
 
         if s:save_background != ""
             exec( "set background=" . s:save_background )
