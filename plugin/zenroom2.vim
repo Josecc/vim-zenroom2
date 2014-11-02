@@ -35,7 +35,6 @@ function! s:markdown_room()
 
     set background=light
     set linespace=8
-    set wrap
     set linebreak
     set nolist
     set guioptions=aegit
@@ -93,7 +92,6 @@ function! s:zenroom_goyo_after()
     let is_mark_or_rst = &filetype == "markdown" || &filetype == "rst" || &filetype == "text"
     if is_mark_or_rst
         set linespace=0
-        set nowrap
         set nolinebreak
         set list
 
