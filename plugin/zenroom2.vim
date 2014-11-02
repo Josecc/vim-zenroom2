@@ -17,15 +17,25 @@ let g:loaded_zenroom2_plugin = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin Configuration
 "
-" Save the current `background` value for reset later
+" The `background` value will be saved for reset here
 let s:save_background = ""
-if exists( "&background" )
-    let s:save_background = &background
-endif
+" The `guioptions` value will be saved for reset here
+let s:save_guioptions = ""
 
 function! s:markdown_room()
+
+    " Save the current `background` value
+    if exists( "&background" )
+        let s:save_background = &background
+    endif
+    " Save the current `guioptions` value
+    if exists( "&guioptions" )
+        let s:save_guioptions = &guioptions
+    endif
+
     set background=light
     set linespace=8
+    set guioptions=aegit
 
     hi Normal guibg=gray95
     hi NonText guifg=gray95
@@ -81,8 +91,13 @@ function! s:zenroom_goyo_after()
     if is_mark_or_rst
         set linespace=0
 
+        " Reset `background` to its previous value, if any
         if s:save_background != ""
             exec( "set background=" . s:save_background )
+        endif
+        " Reset `guioptions` to its previous value, if any
+        if s:save_guioptions != ""
+            exec( "set guioptions=" . s:save_guioptions )
         endif
     endif
 endfunction
